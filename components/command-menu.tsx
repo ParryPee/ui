@@ -11,9 +11,9 @@ import {
   CommandItem,
   CommandList
 } from "@/registry/8starlabs-ui/ui/command";
-import { COMMAND_MENU_DATA } from "@/lib/data";
 import { useIsMac } from "@/hooks/use-is-mac";
 import { cn } from "@/lib/utils";
+import { siteConfig } from "@/lib/config";
 
 const CommandMenu = () => {
   const router = useRouter();
@@ -66,7 +66,7 @@ const CommandMenu = () => {
         <CommandList>
           <CommandEmpty>No results found.</CommandEmpty>
           <CommandGroup heading="Links">
-            {COMMAND_MENU_DATA.mainNav.map((navItem) => (
+            {siteConfig.navLinks.map((navItem) => (
               <CommandItem
                 key={navItem.href}
                 value={navItem.label}

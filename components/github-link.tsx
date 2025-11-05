@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { Icons } from "@/components/icons";
-import { siteConfig } from "@/lib/config";
+import { api, siteConfig } from "@/lib/config";
 import { Button } from "@/registry/8starlabs-ui/ui/button";
 import { Suspense } from "react";
 import { Skeleton } from "@/registry/8starlabs-ui/ui/skeleton";
@@ -19,7 +19,7 @@ export function GitHubLink() {
 }
 
 export async function StarsCount() {
-  const data = await fetch("https://api.github.com/repos/8starlabs/ui", {
+  const data = await fetch(api.github.direct, {
     next: { revalidate: 86400 } // Cache for 1 day (86400 seconds)
   });
   const json = await data.json();
