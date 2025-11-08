@@ -15,7 +15,7 @@ The library integrates seamlessly with Next.js projects using shadcn/ui and prov
 ## Installation
 
 ```bash
-npx shadcn@latest add https://ui.elevenlabs.io/r/transport-badge.json
+npx shadcn@latest add https://ui.8starlabs.io/r/status-indicator.json
 ```
 
 All available components can be found [here](https://ui.8starlabs.com/docs/components).
@@ -34,7 +34,7 @@ We welcome contributions to 8starlabs UI! Please read the [contributing guide](/
 
 ## License
 
-Licensed under the [MIT license](https://github.com/elevenlabs/ui/blob/main/LICENSE.md).
+Licensed under the [MIT license](https://github.com/8starlabs/ui/blob/main/LICENSE.md).
 
 ## Contact
 

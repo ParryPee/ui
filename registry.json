@@ -4,13 +4,13 @@
   "homepage": "https://ui.8starlabs.com",
   "items": [
     {
-      "name": "pulse",
+      "name": "status-indicator",
       "type": "registry:ui",
-      "title": "Pulse",
-      "description": "A simple pulse component",
+      "title": "Status indicator",
+      "description": "A status indicator component",
       "files": [
         {
-          "path": "registry/8starlabs-ui/blocks/pulse.tsx",
+          "path": "registry/8starlabs-ui/blocks/status-indicator.tsx",
           "type": "registry:ui"
         }
       ]
