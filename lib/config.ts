@@ -8,7 +8,8 @@ export const siteConfig = {
     { href: "/docs/components", label: "Components" }
   ],
   links: {
-    github: "https://github.com/8starlabs/ui"
+    github: "https://github.com/8starlabs/ui",
+    eslNewsletter: "https://8starlabs.com#newsletter"
   },
   utm: {
     main: "https://8starlabs.com?utm_source=ui_8starlabs&utm_medium=web"
