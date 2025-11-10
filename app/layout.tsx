@@ -4,6 +4,7 @@ import "./globals.css";
 import { siteConfig } from "@/lib/config";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
+import ProgressWrapper from "@/providers/ProgressWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -42,7 +43,8 @@ export default function RootLayout({
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
         <SiteHeader />
-        {children}
+        <ProgressWrapper>{children}</ProgressWrapper>
+
         <SiteFooter />
       </body>
     </html>

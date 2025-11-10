@@ -9,6 +9,7 @@
 - Status indicators (pulsing system dots, activity signals)
 - Transport badges (MRT, bus, and other transit symbols)
 - Developer banners (CLI banners, dev alerts, labels)
+- and more!
 
 The library integrates seamlessly with Next.js projects using shadcn/ui and provides a simple CLI for adding components to your project.
 
@@ -30,7 +31,7 @@ Before using 8starlabs UI, ensure your Next.js project meets these requirements:
 
 ## Contributing
 
-We welcome contributions to 8starlabs UI! Please read the [contributing guide](/CONTRIBUTING.md) for more details. Love 8StarLabsUI? Give us a ⭐ on GitHub!
+Please read the [contributing guide](/CONTRIBUTING.md) for more details. Love 8StarLabsUI? Give us a ⭐ on GitHub!
 
 ## License
 
