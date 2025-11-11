@@ -2,15 +2,6 @@
 
 [8StarLabs UI](https://ui.8starlabs.com) is a component library built on top of shadcn/ui to help you build modern, interactive, and unique interfaces faster.
 
-## Overview
-
-8starlabs UI provides pre-built, reusable React components specifically designed for dashboards, developer tools, and interactive applications, including:
-
-- Status indicators (pulsing system dots, activity signals)
-- Transport badges (MRT, bus, and other transit symbols)
-- Developer banners (CLI banners, dev alerts, labels)
-- and more!
-
 The library integrates seamlessly with Next.js projects using shadcn/ui and provides a simple CLI for adding components to your project.
 
 ## Installation
@@ -36,6 +27,10 @@ Please read the [contributing guide](/CONTRIBUTING.md) for more details. Love 8S
 ## License
 
 Licensed under the [MIT license](https://github.com/8starlabs/ui/blob/main/LICENSE.md).
+
+## Star History
+
+[![Star History Chart](https://api.star-history.com/svg?repos=8starlabs/ui&type=date&legend=top-left)](https://www.star-history.com/#8starlabs/ui&type=date&legend=top-left)
 
 ## Contact
 

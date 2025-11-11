@@ -15,9 +15,9 @@ const getStateColors = (state: StatusIndicatorProps["state"]) => {
     case "active":
       return { dot: "bg-green-500", ping: "bg-green-300" };
     case "down":
-      return { dot: "bg-red-600", ping: "bg-red-400" };
+      return { dot: "bg-red-500", ping: "bg-red-300" };
     case "fixing":
-      return { dot: "bg-yellow-600", ping: "bg-yellow-400" };
+      return { dot: "bg-yellow-500", ping: "bg-yellow-300" };
     case "idle":
     default:
       return { dot: "bg-slate-700", ping: "bg-slate-400" };
@@ -44,7 +44,8 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({
   size = "md",
   labelClassName
 }) => {
-  const shouldAnimate = state === "active" || state === "fixing";
+  const shouldAnimate =
+    state === "active" || state === "fixing" || state === "down";
   const colors = getStateColors(state);
   const sizeClasses = getSizeClasses(size);
 
@@ -55,14 +56,17 @@ const StatusIndicator: React.FC<StatusIndicatorProps> = ({
           <span
             className={cn(
               "absolute inline-flex rounded-full opacity-75 animate-ping",
-              sizeClasses.ping
+              sizeClasses.ping,
+              colors.ping
             )}
-            style={{ backgroundColor: color || colors.ping }}
           />
         )}
         <span
-          className={cn("relative inline-flex rounded-full", sizeClasses.dot)}
-          style={{ backgroundColor: color || colors.dot }}
+          className={cn(
+            "relative inline-flex rounded-full",
+            sizeClasses.dot,
+            colors.dot
+          )}
         />
       </div>
       {label && (
