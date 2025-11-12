@@ -27,3 +27,5 @@ export const META_THEME_COLORS = {
   light: "#ffffff",
   dark: "#09090b"
 };
+
+export const ENVIRONMENT = process.env.NODE_ENV || "development";

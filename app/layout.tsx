@@ -1,13 +1,14 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
-import { siteConfig } from "@/lib/config";
+import { ENVIRONMENT, siteConfig } from "@/lib/config";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import ProgressWrapper from "@/providers/ProgressWrapper";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import FaviconWrapper from "@/providers/FaviconWrapper";
 import Script from "next/script";
+import SystemBanner from "@/registry/8starlabs-ui/blocks/system-banner";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <FaviconWrapper />
           <SiteHeader />
+          <SystemBanner show={ENVIRONMENT === "development"} />
           <ProgressWrapper>{children}</ProgressWrapper>
           <SiteFooter />
         </ThemeProvider>
