@@ -22,7 +22,10 @@ export function MobileNav({
   className?: string;
 }) {
   const [open, setOpen] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
   const { resolvedTheme } = useTheme();
+  React.useEffect(() => setMounted(true), []);
+  if (!mounted) return null;
   return (
     <Popover open={open} onOpenChange={setOpen}>
       <PopoverTrigger asChild>

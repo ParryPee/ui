@@ -1,21 +1,21 @@
-"use client"
+"use client";
 
-import * as React from "react"
-import { IconCheck, IconCopy } from "@tabler/icons-react"
+import * as React from "react";
+import { CheckIcon, ClipboardIcon } from "lucide-react";
 
-import { Event, trackEvent } from "@/lib/events"
-import { cn } from "@/lib/utils"
-import { Button } from "@/registry/8starlabs-ui/ui/button"
+import { Event, trackEvent } from "@/lib/events";
+import { cn } from "@/lib/utils";
+import { Button } from "@/registry/8starlabs-ui/ui/button";
 import {
   Tooltip,
   TooltipContent,
-  TooltipTrigger,
-} from "@/registry/8starlabs-ui/ui/tooltip"
+  TooltipTrigger
+} from "@/registry/8starlabs-ui/ui/tooltip";
 
 export function copyToClipboardWithMeta(value: string, event?: Event) {
-  navigator.clipboard.writeText(value)
+  navigator.clipboard.writeText(value);
   if (event) {
-    trackEvent(event)
+    trackEvent(event);
   }
 }
 
@@ -24,28 +24,25 @@ export function CopyButton({
   className,
   variant = "ghost",
   event,
-  tooltip = "Copy to Clipboard",
   ...props
 }: React.ComponentProps<typeof Button> & {
-  value: string
-  src?: string
-  event?: Event["name"]
-  tooltip?: string
+  value: string;
+  src?: string;
+  event?: Event["name"];
 }) {
-  const [hasCopied, setHasCopied] = React.useState(false)
+  const [hasCopied, setHasCopied] = React.useState(false);
 
   React.useEffect(() => {
     setTimeout(() => {
-      setHasCopied(false)
-    }, 2000)
-  }, [])
+      setHasCopied(false);
+    }, 2000);
+  }, []);
 
   return (
     <Tooltip>
       <TooltipTrigger asChild>
         <Button
           data-slot="copy-button"
-          data-copied={hasCopied}
           size="icon"
           variant={variant}
           className={cn(
@@ -59,20 +56,22 @@ export function CopyButton({
                 ? {
                     name: event,
                     properties: {
-                      code: value,
-                    },
+                      code: value
+                    }
                   }
                 : undefined
-            )
-            setHasCopied(true)
+            );
+            setHasCopied(true);
           }}
           {...props}
         >
           <span className="sr-only">Copy</span>
-          {hasCopied ? <IconCheck /> : <IconCopy />}
+          {hasCopied ? <CheckIcon /> : <ClipboardIcon />}
         </Button>
       </TooltipTrigger>
-      <TooltipContent>{hasCopied ? "Copied" : tooltip}</TooltipContent>
+      <TooltipContent>
+        {hasCopied ? "Copied" : "Copy to Clipboard"}
+      </TooltipContent>
     </Tooltip>
-  )
+  );
 }

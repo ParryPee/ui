@@ -1,11 +1,11 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { usePathname } from "next/navigation"
+import Link from "next/link";
+import { usePathname } from "next/navigation";
 
-import { PAGES_NEW } from "@/lib/docs"
-import { showMcpDocs } from "@/lib/flags"
-import type { source } from "@/lib/source"
+import { PAGES_NEW } from "@/lib/docs";
+import { showMcpDocs } from "@/lib/flags";
+import type { source } from "@/lib/source";
 import {
   Sidebar,
   SidebarContent,
@@ -14,40 +14,40 @@ import {
   SidebarGroupLabel,
   SidebarMenu,
   SidebarMenuButton,
-  SidebarMenuItem,
-} from "@/registry/8starlabs-ui/ui/sidebar"
+  SidebarMenuItem
+} from "@/registry/8starlabs-ui/ui/sidebar";
 
 const TOP_LEVEL_SECTIONS = [
   { name: "Get Started", href: "/docs" },
   {
     name: "Components",
-    href: "/docs/components",
+    href: "/docs/components"
   },
   {
     name: "Directory",
-    href: "/docs/directory",
+    href: "/docs/directory"
   },
   {
     name: "MCP Server",
-    href: "/docs/mcp",
+    href: "/docs/mcp"
   },
   {
     name: "Forms",
-    href: "/docs/forms",
+    href: "/docs/forms"
   },
   {
     name: "Changelog",
-    href: "/docs/changelog",
-  },
-]
-const EXCLUDED_SECTIONS = ["installation", "dark-mode"]
-const EXCLUDED_PAGES = ["/docs", "/docs/changelog"]
+    href: "/docs/changelog"
+  }
+];
+const EXCLUDED_SECTIONS = ["installation", "dark-mode"];
+const EXCLUDED_PAGES = ["/docs", "/docs/changelog"];
 
 export function DocsSidebar({
   tree,
   ...props
 }: React.ComponentProps<typeof Sidebar> & { tree: typeof source.pageTree }) {
-  const pathname = usePathname()
+  const pathname = usePathname();
 
   return (
     <Sidebar
@@ -65,7 +65,7 @@ export function DocsSidebar({
             <SidebarMenu>
               {TOP_LEVEL_SECTIONS.map(({ name, href }) => {
                 if (!showMcpDocs && href.includes("/mcp")) {
-                  return null
+                  return null;
                 }
                 return (
                   <SidebarMenuItem key={name}>
@@ -84,14 +84,14 @@ export function DocsSidebar({
                       </Link>
                     </SidebarMenuButton>
                   </SidebarMenuItem>
-                )
+                );
               })}
             </SidebarMenu>
           </SidebarGroupContent>
         </SidebarGroup>
         {tree.children.map((item) => {
           if (EXCLUDED_SECTIONS.includes(item.$id ?? "")) {
-            return null
+            return null;
           }
 
           return (
@@ -108,7 +108,7 @@ export function DocsSidebar({
                         item.type === "page" &&
                         item.url?.includes("/mcp")
                       ) {
-                        return null
+                        return null;
                       }
 
                       return (
@@ -133,16 +133,16 @@ export function DocsSidebar({
                             </SidebarMenuButton>
                           </SidebarMenuItem>
                         )
-                      )
+                      );
                     })}
                   </SidebarMenu>
                 )}
               </SidebarGroupContent>
             </SidebarGroup>
-          )
+          );
         })}
         <div className="from-background via-background/80 to-background/50 sticky -bottom-1 z-10 h-16 shrink-0 bg-gradient-to-t blur-xs" />
       </SidebarContent>
     </Sidebar>
-  )
+  );
 }

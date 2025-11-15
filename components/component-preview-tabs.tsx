@@ -1,8 +1,8 @@
-"use client"
+"use client";
 
-import * as React from "react"
+import * as React from "react";
 
-import { cn } from "@/lib/utils"
+import { cn } from "@/lib/utils";
 
 export function ComponentPreviewTabs({
   className,
@@ -13,11 +13,11 @@ export function ComponentPreviewTabs({
   source,
   ...props
 }: React.ComponentProps<"div"> & {
-  align?: "center" | "start" | "end"
-  hideCode?: boolean
-  chromeLessOnMobile?: boolean
-  component: React.ReactNode
-  source: React.ReactNode
+  align?: "center" | "start" | "end";
+  hideCode?: boolean;
+  chromeLessOnMobile?: boolean;
+  component: React.ReactNode;
+  source: React.ReactNode;
 }) {
   return (
     <div
@@ -47,5 +47,5 @@ export function ComponentPreviewTabs({
         )}
       </div>
     </div>
-  )
+  );
 }

@@ -1,29 +1,29 @@
-"use client"
+"use client";
 
-import { IconCheck, IconChevronDown, IconCopy } from "@tabler/icons-react"
+import { IconCheck, IconChevronDown, IconCopy } from "@tabler/icons-react";
 
-import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard"
-import { Button } from "@/registry/8starlabs-ui/ui/button"
+import { useCopyToClipboard } from "@/hooks/use-copy-to-clipboard";
+import { Button } from "@/registry/8starlabs-ui/ui/button";
 import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/registry/8starlabs-ui/ui/dropdown-menu"
+  DropdownMenuTrigger
+} from "@/registry/8starlabs-ui/ui/dropdown-menu";
 import {
   Popover,
   PopoverAnchor,
   PopoverContent,
-  PopoverTrigger,
-} from "@/registry/8starlabs-ui/ui/popover"
-import { Separator } from "@/registry/8starlabs-ui/ui/separator"
+  PopoverTrigger
+} from "@/registry/8starlabs-ui/ui/popover";
+import { Separator } from "@/registry/8starlabs-ui/ui/separator";
 
 function getPromptUrl(baseURL: string, url: string) {
   return `${baseURL}?q=${encodeURIComponent(
-    `I’m looking at this shadcn/ui documentation: ${url}.
+    `I’m looking at this 8starlabs/ui documentation: ${url}.
 Help me understand how to use it. Be ready to explain concepts, give examples, or help debug based on it.
   `
-  )}`
+  )}`;
 }
 
 const menuItems = {
@@ -86,11 +86,11 @@ const menuItems = {
       </svg>
       Open in Claude
     </a>
-  ),
-}
+  )
+};
 
 export function DocsCopyPage({ page, url }: { page: string; url: string }) {
-  const { copyToClipboard, isCopied } = useCopyToClipboard()
+  const { copyToClipboard, isCopied } = useCopyToClipboard();
 
   const trigger = (
     <Button
@@ -100,7 +100,7 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
     >
       <IconChevronDown className="rotate-180 sm:rotate-0" />
     </Button>
-  )
+  );
 
   return (
     <Popover>
@@ -152,5 +152,5 @@ export function DocsCopyPage({ page, url }: { page: string; url: string }) {
         </PopoverContent>
       </div>
     </Popover>
-  )
+  );
 }

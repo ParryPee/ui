@@ -1,8 +1,8 @@
-import Image from "next/image"
+import Image from "next/image";
 
-import { ComponentPreviewTabs } from "@/components/component-preview-tabs"
-import { ComponentSource } from "@/components/component-source"
-import { Index } from "@/registry/__index__"
+import { ComponentPreviewTabs } from "@/components/component-preview-tabs";
+import { ComponentSource } from "@/components/component-source";
+import { Index } from "@/registry/__index__";
 
 export function ComponentPreview({
   name,
@@ -14,15 +14,15 @@ export function ComponentPreview({
   chromeLessOnMobile = false,
   ...props
 }: React.ComponentProps<"div"> & {
-  name: string
-  styleName?: any
-  align?: "center" | "start" | "end"
-  description?: string
-  hideCode?: boolean
-  type?: "block" | "component" | "example"
-  chromeLessOnMobile?: boolean
+  name: string;
+  styleName?: any;
+  align?: "center" | "start" | "end";
+  description?: string;
+  hideCode?: boolean;
+  type?: "block" | "component" | "example";
+  chromeLessOnMobile?: boolean;
 }) {
-  const Component = Index[styleName]?.[name]?.component
+  const Component = Index[styleName]?.[name]?.component;
 
   if (!Component) {
     return (
@@ -33,7 +33,7 @@ export function ComponentPreview({
         </code>{" "}
         not found in registry.
       </p>
-    )
+    );
   }
 
   if (type === "block") {
@@ -57,7 +57,7 @@ export function ComponentPreview({
           <iframe src={`/view/${styleName}/${name}`} className="size-full" />
         </div>
       </div>
-    )
+    );
   }
 
   return (
@@ -76,5 +76,5 @@ export function ComponentPreview({
       chromeLessOnMobile={chromeLessOnMobile}
       {...props}
     />
-  )
+  );
 }

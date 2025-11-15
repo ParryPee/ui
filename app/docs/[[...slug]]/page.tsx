@@ -1,45 +1,44 @@
-import Link from "next/link"
-import { notFound } from "next/navigation"
-import { mdxComponents } from "@/components/mdx-components"
+import Link from "next/link";
+import { notFound } from "next/navigation";
+import { mdxComponents } from "@/components/mdx-components";
 import {
   IconArrowLeft,
   IconArrowRight,
-  IconArrowUpRight,
-} from "@tabler/icons-react"
-import fm from "front-matter"
-import { findNeighbour } from "fumadocs-core/page-tree"
-import z from "zod"
+  IconArrowUpRight
+} from "@tabler/icons-react";
+import fm from "front-matter";
+import { findNeighbour } from "fumadocs-core/page-tree";
+import z from "zod";
 
-import { source } from "@/lib/source"
-import { absoluteUrl } from "@/lib/utils"
-import { DocsCopyPage } from "@/components/docs-copy-page"
-import { DocsTableOfContents } from "@/components/docs-toc"
-import { OpenInV0Cta } from "@/components/open-in-v0-cta"
-import { Badge } from "@/registry/8starlabs-ui/ui/badge"
-import { Button } from "@/registry/8starlabs-ui/ui/button"
+import { source } from "@/lib/source";
+import { absoluteUrl } from "@/lib/utils";
+import { DocsCopyPage } from "@/components/docs-copy-page";
+import { DocsTableOfContents } from "@/components/docs-toc";
+import { Badge } from "@/registry/8starlabs-ui/ui/badge";
+import { Button } from "@/registry/8starlabs-ui/ui/button";
 
-export const revalidate = false
-export const dynamic = "force-static"
-export const dynamicParams = false
+export const revalidate = false;
+export const dynamic = "force-static";
+export const dynamicParams = false;
 
 export function generateStaticParams() {
-  return source.generateParams()
+  return source.generateParams();
 }
 
 export async function generateMetadata(props: {
-  params: Promise<{ slug: string[] }>
+  params: Promise<{ slug: string[] }>;
 }) {
-  const params = await props.params
-  const page = source.getPage(params.slug)
+  const params = await props.params;
+  const page = source.getPage(params.slug);
 
   if (!page) {
-    notFound()
+    notFound();
   }
 
-  const doc = page.data
+  const doc = page.data;
 
   if (!doc.title || !doc.description) {
-    notFound()
+    notFound();
   }
 
   return {
@@ -54,9 +53,9 @@ export async function generateMetadata(props: {
         {
           url: `/og?title=${encodeURIComponent(
             doc.title
-          )}&description=${encodeURIComponent(doc.description)}`,
-        },
-      ],
+          )}&description=${encodeURIComponent(doc.description)}`
+        }
+      ]
     },
     twitter: {
       card: "summary_large_image",
@@ -66,39 +65,39 @@ export async function generateMetadata(props: {
         {
           url: `/og?title=${encodeURIComponent(
             doc.title
-          )}&description=${encodeURIComponent(doc.description)}`,
-        },
+          )}&description=${encodeURIComponent(doc.description)}`
+        }
       ],
-      creator: "@shadcn",
-    },
-  }
+      creator: "@8StarLabs"
+    }
+  };
 }
 
 export default async function Page(props: {
-  params: Promise<{ slug: string[] }>
+  params: Promise<{ slug: string[] }>;
 }) {
-  const params = await props.params
-  const page = source.getPage(params.slug)
+  const params = await props.params;
+  const page = source.getPage(params.slug);
   if (!page) {
-    notFound()
+    notFound();
   }
 
-  const doc = page.data
-  const MDX = doc.body
-  const neighbours = findNeighbour(source.pageTree, page.url)
+  const doc = page.data;
+  const MDX = doc.body;
+  const neighbours = findNeighbour(source.pageTree, page.url);
 
-  const raw = await page.data.getText("raw")
-  const { attributes } = fm(raw)
+  const raw = await page.data.getText("raw");
+  const { attributes } = fm(raw);
   const { links } = z
     .object({
       links: z
         .object({
           doc: z.string().optional(),
-          api: z.string().optional(),
+          api: z.string().optional()
         })
-        .optional(),
+        .optional()
     })
-    .parse(attributes)
+    .parse(attributes);
 
   return (
     <div className="flex items-stretch text-[1.05rem] sm:text-[15px] xl:w-full">
@@ -205,10 +204,7 @@ export default async function Page(props: {
             <div className="h-12" />
           </div>
         ) : null}
-        <div className="flex flex-1 flex-col gap-12 px-6">
-          <OpenInV0Cta />
-        </div>
       </div>
     </div>
-  )
+  );
 }
