@@ -66,7 +66,7 @@ export function DocsSidebar({
                     <SidebarMenuButton
                       asChild
                       isActive={
-                        href === "/docs"
+                        href === "/docs" || href === "/docs/components"
                           ? pathname === href
                           : pathname.startsWith(href)
                       }
