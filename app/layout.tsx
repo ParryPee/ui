@@ -9,6 +9,7 @@ import { ThemeProvider } from "@/providers/ThemeProvider";
 import FaviconWrapper from "@/providers/FaviconWrapper";
 import Script from "next/script";
 import SystemBanner from "@/registry/8starlabs-ui/blocks/system-banner";
+import { source } from "@/lib/source";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -62,6 +63,7 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+  const tree = source.pageTree;
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
@@ -98,7 +100,7 @@ export default function RootLayout({
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <FaviconWrapper />
-          <SiteHeader />
+          <SiteHeader tree={tree} />
           <SystemBanner show={ENVIRONMENT === "development"} />
           <ProgressWrapper>
             <main className="relative z-10 flex min-h-svh flex-col">

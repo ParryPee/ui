@@ -24,24 +24,18 @@ const TOP_LEVEL_SECTIONS = [
     href: "/docs/components"
   },
   {
-    name: "Directory",
-    href: "/docs/directory"
-  },
-  {
     name: "MCP Server",
     href: "/docs/mcp"
-  },
-  {
-    name: "Forms",
-    href: "/docs/forms"
   },
   {
     name: "Changelog",
     href: "/docs/changelog"
   }
 ];
-const EXCLUDED_SECTIONS = ["installation", "dark-mode"];
+const EXCLUDED_SECTIONS = ["(root)"];
 const EXCLUDED_PAGES = ["/docs", "/docs/changelog"];
+
+const NEW_COMPONENTS = [];
 
 export function DocsSidebar({
   tree,
@@ -59,7 +53,7 @@ export function DocsSidebar({
         <div className="from-background via-background/80 to-background/50 sticky -top-1 z-10 h-8 shrink-0 bg-gradient-to-b blur-xs" />
         <SidebarGroup>
           <SidebarGroupLabel className="text-muted-foreground font-medium">
-            Sections
+            Getting Started
           </SidebarGroupLabel>
           <SidebarGroupContent>
             <SidebarMenu>

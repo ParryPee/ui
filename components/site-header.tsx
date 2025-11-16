@@ -13,8 +13,9 @@ import { Separator } from "@/registry/8starlabs-ui/ui/separator";
 import { Icons } from "@/components/icons";
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
+import { source } from "@/lib/source";
 
-export function SiteHeader() {
+export function SiteHeader({ tree }: { tree: typeof source.pageTree }) {
   const { theme, resolvedTheme } = useTheme();
   const [mounted, setMounted] = useState(false);
   useEffect(() => setMounted(true), []);
@@ -49,7 +50,7 @@ export function SiteHeader() {
         <div className="ml-auto flex items-center gap-2 md:flex-1 md:justify-end">
           <div className="hidden w-full flex-1 md:flex md:w-auto md:flex-none items-center gap-2">
             <div className="flex items-center h-full">
-              <CommandMenu />
+              <CommandMenu tree={tree} />
             </div>
           </div>
           <Separator
