@@ -1,0 +1,29 @@
+---
+title: Troubleshooting
+description: Troubleshooting 8StarLabs UI components.
+---
+
+## Why are my components not styled?
+
+Make sure your project is configured correctly for shadcn/ui in Tailwind 4 - this means having a `globals.css` file that imports Tailwind and includes the shadcn/ui base styles.
+
+## The component imports fail with “module not found”
+
+Check the file exists. If it does, make sure your tsconfig.json has a proper paths alias for @/ i.e.
+
+```json
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "paths": {
+      "@/_": ["./_"]
+    }
+  }
+}
+```
+
+---
+
+## Still stuck?
+
+If all else fails, feel free to open an issue on [GitHub](https://github.com/8starlabs/ui/issues).

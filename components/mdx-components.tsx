@@ -53,7 +53,7 @@ export const mdxComponents = {
           .replace(/\?/g, "")
           .toLowerCase()}
         className={cn(
-          "font-heading [&+]*:[code]:text-xl mt-10 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-16 [&+.steps]:!mt-0 [&+.steps>h3]:!mt-4 [&+h3]:!mt-6 [&+p]:!mt-4",
+          "font-heading [&+]*:[code]:text-xl mt-10 scroll-m-28 text-xl font-medium tracking-tight first:mt-0 lg:mt-10 [&+.steps]:!mt-0 [&+.steps>h3]:!mt-4 [&+h3]:!mt-6 [&+p]:!mt-4",
           className
         )}
         {...props}
@@ -133,10 +133,10 @@ export const mdxComponents = {
     <hr className="my-4 md:my-8" {...props} />
   ),
   table: ({ className, ...props }: React.ComponentProps<"table">) => (
-    <div className="no-scrollbar my-6 w-full overflow-y-auto rounded-lg border">
+    <div className="my-6 w-full overflow-y-auto">
       <table
         className={cn(
-          "relative w-full overflow-hidden border-none text-sm [&_tbody_tr:last-child]:border-b-0",
+          "relative w-full overflow-hidden border-none text-sm",
           className
         )}
         {...props}
@@ -144,7 +144,10 @@ export const mdxComponents = {
     </div>
   ),
   tr: ({ className, ...props }: React.ComponentProps<"tr">) => (
-    <tr className={cn("m-0 border-b", className)} {...props} />
+    <tr
+      className={cn("last:border-b-none m-0 border-b", className)}
+      {...props}
+    />
   ),
   th: ({ className, ...props }: React.ComponentProps<"th">) => (
     <th
@@ -158,7 +161,7 @@ export const mdxComponents = {
   td: ({ className, ...props }: React.ComponentProps<"td">) => (
     <td
       className={cn(
-        "px-4 py-2 text-left whitespace-nowrap [&[align=center]]:text-center [&[align=right]]:text-right",
+        "px-4 py-2 text-left [&[align=center]]:text-center [&[align=right]]:text-right",
         className
       )}
       {...props}

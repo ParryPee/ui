@@ -1,16 +1,15 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "@/app/globals.css";
-import { ENVIRONMENT, META_THEME_COLORS, siteConfig } from "@/lib/config";
+import { META_THEME_COLORS, siteConfig } from "@/lib/config";
 import { SiteHeader } from "@/components/site-header";
 import { SiteFooter } from "@/components/site-footer";
 import ProgressWrapper from "@/providers/ProgressWrapper";
 import { ThemeProvider } from "@/providers/ThemeProvider";
 import FaviconWrapper from "@/providers/FaviconWrapper";
 import Script from "next/script";
-import SystemBanner from "@/registry/8starlabs-ui/blocks/system-banner";
 import { source } from "@/lib/source";
-import SystemBannerClientWrapper from "./SystemBannerClientWrapper";
+import SystemBannerClientWrapper from "@/providers/SystemBannerClientWrapper";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",

@@ -40,7 +40,7 @@ import TransportBadge from "@/components/ui/transport-badge";
 ```
 
 ```tsx showLineNumbers
-<TransportBadge system="SMRT" stationCode="NS1" />
+<TransportBadge system="SG" stationCode="NS1" />
 ```
 
 ## Examples
@@ -63,11 +63,11 @@ import TransportBadge from "@/components/ui/transport-badge";
 
 ## API Reference
 
-| Prop              | Type                                             |
-| ----------------- | ------------------------------------------------ |
-| `system`          | `"SMRT"` (required)                              |
-| `stationCode`     | `string \| string[]` (required)                  |
-| `stationName`     | `string`                                         |
-| `showStationName` | `boolean` (default: `false`)                     |
-| `size`            | `"xs" \| "sm" \| "md" \| "lg"` (default: `"md"`) |
-| `className`       | `string`                                         |
+| Prop              | Type                                             | Default | Description                                           |
+| ----------------- | ------------------------------------------------ | ------- | ----------------------------------------------------- |
+| `system`          | `"SG"` (required)                                | -       | **Required.** Transport system identifier.            |
+| `stationCode`     | `string \| string[]` (required)                  | -       | **Required.** Station code(s) for the badge.          |
+| `stationName`     | `string`                                         | -       | Optional station name to display.                     |
+| `showStationName` | `boolean` (default: `false`)                     | `false` | Whether to show the station name alongside the badge. |
+| `size`            | `"xs" \| "sm" \| "md" \| "lg"` (default: `"md"`) | `"md"`  | Size variant of the badge.                            |
+| `className`       | `string`                                         | -       | Additional CSS classes for styling.                   |
