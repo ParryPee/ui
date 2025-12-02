@@ -28,10 +28,6 @@ Please read the [contributing guide](/CONTRIBUTING.md) for more details. Love 8S
 
 Licensed under the [MIT license](https://github.com/8starlabs/ui/blob/main/LICENSE.md).
 
-## Star History
-
-[![Star History Chart](https://api.star-history.com/svg?repos=8starlabs/ui&type=date&legend=top-left)](https://www.star-history.com/#8starlabs/ui&type=date&legend=top-left)
-
 ## Contact
 
 - Tham Kei Lok (Lead Engineer & Developer Relations) - [X](https://www.x.com/keiloktql/), [LinkedIn](https://www.linkedin.com/in/keiloktql/)

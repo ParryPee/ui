@@ -18,19 +18,14 @@ import {
 } from "@/registry/8starlabs-ui/ui/sidebar";
 
 const TOP_LEVEL_SECTIONS = [
-  { name: "Get Started", href: "/docs" },
+  { name: "Introduction", href: "/docs" },
   {
     name: "Components",
     href: "/docs/components"
   },
-  {
-    name: "MCP Server",
-    href: "/docs/mcp"
-  },
-  {
-    name: "Changelog",
-    href: "/docs/changelog"
-  }
+  { name: "Setup", href: "/docs/setup" },
+  { name: "Usage", href: "/docs/usage" },
+  { name: "Troubleshooting", href: "/docs/troubleshooting" }
 ];
 const EXCLUDED_SECTIONS = ["(root)"];
 const EXCLUDED_PAGES = ["/docs", "/docs/changelog"];

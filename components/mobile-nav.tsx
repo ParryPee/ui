@@ -6,6 +6,7 @@ import { useRouter } from "next/navigation";
 
 import { cn } from "@/lib/utils";
 import { Button } from "@/registry/8starlabs-ui/ui/button";
+import { source } from "@/lib/source";
 import {
   Popover,
   PopoverContent,
@@ -15,9 +16,11 @@ import { Icons } from "@/components/icons";
 import { useTheme } from "next-themes";
 
 export function MobileNav({
+  tree,
   items,
   className
 }: {
+  tree: typeof source.pageTree;
   items: { href: string; label: string; external?: boolean }[];
   className?: string;
 }) {
@@ -98,6 +101,34 @@ export function MobileNav({
                 )
               )}
             </div>
+          </div>
+          <div className="flex flex-col gap-8">
+            {tree?.children?.map((group, index) => {
+              if (group.type === "folder") {
+                return (
+                  <div key={index} className="flex flex-col gap-4">
+                    <div className="text-muted-foreground text-sm font-medium">
+                      {group.name}
+                    </div>
+                    <div className="flex flex-col gap-3">
+                      {group.children.map((item) => {
+                        if (item.type === "page") {
+                          return (
+                            <MobileLink
+                              key={`${item.url}-${index}`}
+                              href={item.url}
+                              onOpenChange={setOpen}
+                            >
+                              {item.name}
+                            </MobileLink>
+                          );
+                        }
+                      })}
+                    </div>
+                  </div>
+                );
+              }
+            })}
           </div>
         </div>
       </PopoverContent>

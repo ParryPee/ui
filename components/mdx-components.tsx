@@ -32,9 +32,6 @@ import {
   TabsList,
   TabsTrigger
 } from "@/registry/8starlabs-ui/ui/tabs";
-import TransportBadge from "@/registry/8starlabs-ui/blocks/transport-badge";
-import StatusIndicator from "@/registry/8starlabs-ui/blocks/status-indicator";
-import SystemBanner from "@/registry/8starlabs-ui/blocks/system-banner";
 
 export const mdxComponents = {
   h1: ({ className, ...props }: React.ComponentProps<"h1">) => (
