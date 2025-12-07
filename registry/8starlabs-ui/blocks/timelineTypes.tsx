@@ -5,6 +5,7 @@ export type TimelineItem = {
   description: string;
   date: Date;
   highlight?: boolean;
+  index?: number;
 };
 
 export type TimelineProps = {
@@ -39,7 +40,7 @@ export type TimelineProps = {
   shadow?: boolean;
 };
 
-export type TimelineConfig = Omit<TimelineProps, "children"> & {
+export type TimelineContextType = Omit<TimelineProps, "children"> & {
   numElements: number;
   toHighlight: number[];
 };

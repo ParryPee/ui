@@ -4,11 +4,12 @@ import React, {
   createContext,
   useContext,
   Children,
-  cloneElement
+  cloneElement,
+  type ReactElement
 } from "react";
-import type { TimelineConfig, TimelineItem } from "./timelineTypes";
+import type { TimelineContextType, TimelineItem } from "./timelineTypes";
 
-const TimelineContext = createContext<TimelineConfig | null>(null);
+const TimelineContext = createContext<TimelineContextType | null>(null);
 
 function useTimelineContext() {
   const context = useContext(TimelineContext);
@@ -24,8 +25,8 @@ export function TimelineClient({
   config,
   children
 }: {
-  config: TimelineConfig;
-  children: any;
+  config: TimelineContextType;
+  children: ReactElement<TimelineItem>[];
 }) {
   const { title, titleColor, titleSize, itemSpacing, itemGap, itemWidth } =
     config;
