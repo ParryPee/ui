@@ -50,6 +50,7 @@
     "nuqs": "^2.7.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "react-snowfall": "^2.4.0",
     "rehype-pretty-code": "^0.14.1",
     "remark": "^15.0.1",
     "remark-html": "^16.0.1",

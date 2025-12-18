@@ -6,6 +6,7 @@ import { cn } from "@/lib/utils";
 import { useEffect, useState } from "react";
 import { Button } from "@/registry/8starlabs-ui/ui/button";
 import Link from "next/link";
+import Snowfall from "react-snowfall";
 
 interface HeroProps {
   className?: string;
@@ -32,7 +33,15 @@ const Hero = ({ className }: HeroProps) => {
 
   return (
     <div className={cn("flex flex-col w-full items-center gap-2", className)}>
-      <Badge variant="secondary" className="bg-transparent" asChild>
+      <Snowfall snowflakeCount={67} />
+      <Badge variant="secondary" className="bg-transparent">
+        <span
+          className="flex size-2 rounded-full bg-blue-500"
+          title="Coming soon"
+        />
+        Merry Christmas! 🎄
+      </Badge>
+      {/* <Badge variant="secondary" className="bg-transparent" asChild>
         <Link prefetch={false} href="/docs/components/timeline">
           <span
             className="flex size-2 rounded-full bg-blue-500"
@@ -40,7 +49,7 @@ const Hero = ({ className }: HeroProps) => {
           />
           New: Timeline component launched!
         </Link>
-      </Badge>
+      </Badge> */}
       {logo}
       <p className="text-md max-w-3xl text-center">
         A set of beautifully designed components designed for developers who
