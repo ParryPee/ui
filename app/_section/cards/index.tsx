@@ -1,6 +1,7 @@
 import { cn } from "@/lib/utils";
 import StatusIndicatorCard from "./status-indicator-card";
 import TransportBadgeCard from "./transport-badge-card";
+import TimelineCard from "./timeline-card";
 
 interface CardsProps {
   className?: string;
@@ -19,6 +20,9 @@ const Cards = ({ className }: CardsProps) => {
       </div>
       <div className="xl:col-start-3">
         <TransportBadgeCard />
+      </div>
+      <div className="sm:col-span-2 xl:col-span-2 xl:col-start-2">
+        <TimelineCard />
       </div>
     </div>
   );
