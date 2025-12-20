@@ -96,7 +96,7 @@ export default function RootLayout({
         <meta name="theme-color" content={META_THEME_COLORS.light} />
       </head>
       <body
-        className={`${geistSans.variable} ${geistMono.variable} group/body overscroll-none antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]`}
+        className={`${geistSans.variable} ${geistMono.variable} group/body antialiased [--footer-height:calc(var(--spacing)*14)] [--header-height:calc(var(--spacing)*14)] xl:[--footer-height:calc(var(--spacing)*24)]`}
       >
         <ThemeProvider attribute="class" defaultTheme="system" enableSystem>
           <div className="bg-background relative z-10 flex min-h-svh flex-col">
@@ -104,7 +104,7 @@ export default function RootLayout({
             <SiteHeader tree={tree} />
             <SystemBannerClientWrapper />
             <ProgressWrapper>
-              <main className="flex flex-1 flex-col">{children}</main>
+              <main className="flex flex-1 flex-col size-full">{children}</main>
             </ProgressWrapper>
             <SiteFooter />
           </div>

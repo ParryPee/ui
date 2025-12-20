@@ -147,12 +147,16 @@
   }
 
   html {
-    @apply overscroll-y-none scroll-smooth;
+    @apply scroll-smooth;
   }
 
   body {
     @apply bg-background text-foreground;
   }
+}
+
+* {
+  scroll-margin-top: 80px;
 }
 
 @utility border-grid {
