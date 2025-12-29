@@ -1,0 +1,126 @@
+---
+title: Timeline
+description: A timeline component that displays events with customizable orientation, alignment, and spacing.
+---
+
+<ComponentPreview name="timeline-demo" />
+
+## Installation
+
+<CodeTabs>
+
+<TabsList>
+  <TabsTrigger value="cli">CLI</TabsTrigger>
+  <TabsTrigger value="manual">Manual</TabsTrigger>
+</TabsList>
+
+<TabsContent value="cli">
+
+```bash
+npx shadcn@latest add https://ui.8starlabs.com/r/timeline
+```
+
+</TabsContent>
+
+<TabsContent value="manual">
+
+<ComponentSource name="timeline" title="components/ui/timeline.tsx" />
+
+</TabsContent>
+
+</CodeTabs>
+
+## Usage
+
+```tsx showLineNumbers
+import {
+  Timeline,
+  TimelineItem,
+  TimelineItemDate,
+  TimelineItemTitle,
+  TimelineItemDescription
+} from "@/components/ui/timeline";
+
+export function MyTimeline() {
+  return (
+    <Timeline orientation="horizontal">
+      <TimelineItem>
+        <TimelineItemDate>January 2024</TimelineItemDate>
+        <TimelineItemTitle>Project Kickoff</TimelineItemTitle>
+        <TimelineItemDescription>
+          Initial planning and requirements gathering.
+        </TimelineItemDescription>
+      </TimelineItem>
+
+      <TimelineItem variant="secondary">
+        <TimelineItemDate>February 2024</TimelineItemDate>
+        <TimelineItemTitle>Design Phase</TimelineItemTitle>
+        <TimelineItemDescription>
+          Mockups and prototypes approved.
+        </TimelineItemDescription>
+      </TimelineItem>
+    </Timeline>
+  );
+}
+```
+
+## API Reference
+
+### Timeline
+
+| Prop               | Type                           | Default        | Description                                                                                          |
+| ------------------ | ------------------------------ | -------------- | ---------------------------------------------------------------------------------------------------- |
+| `orientation`      | `"horizontal" \| "vertical"`   | `"horizontal"` | Controls the direction of the timeline.                                                              |
+| `alternating`      | `boolean`                      | `true`         | Whether cards alternate on opposite sides of the central line. When enabled, `alignment` is ignored. |
+| `alignment`        | `"top/left" \| "bottom/right"` | `"top/left"`   | Determines which side cards appear on when `alternating` is `false`.                                 |
+| `horizItemSpacing` | `number`                       | `130`          | Horizontal distance in pixels between timeline points.                                               |
+| `horizItemWidth`   | `number`                       | `220`          | Fixed width in pixels for cards in horizontal timelines.                                             |
+| `vertItemSpacing`  | `number`                       | `130`          | Vertical distance in pixels between timeline points.                                                 |
+| `vertItemMaxWidth` | `number`                       | `350`          | Maximum width in pixels for cards in vertical timelines.                                             |
+| `noCards`          | `boolean`                      | `false`        | Removes card background, border, and padding styles.                                                 |
+
+### TimelineItem
+
+| Prop      | Type                                                     | Default   | Description                                                                                                                                          |
+| --------- | -------------------------------------------------------- | --------- | ---------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `variant` | `"default" \| "secondary" \| "destructive" \| "outline"` | `default` | Visual variant applied to the card, dot, and connecting branch.                                                                                      |
+| `hollow`  | `boolean`                                                | `false`   | Renders the timeline dot as a hollow circle instead of a solid one. Has no effect if `variant` is `"outline"` as the dot is already a hollow circle. |
+
+### TimelineItemDate
+
+Displays a formatted date or string. Accepts either a `Date` object or a string.
+
+### TimelineItemTitle
+
+Displays the main title of a timeline event.
+
+### TimelineItemDescription
+
+Displays supporting text for a timeline event.
+
+## Examples
+
+### Horizontal Timeline
+
+<ComponentPreview name="timeline-demo" />
+
+### Vertical Timeline
+
+<ComponentPreview name="timeline-vertical-demo" />
+
+### Non-alternating Layout
+
+<ComponentPreview name="timeline-not-alternating-demo" />
+
+### No Cards
+
+<ComponentPreview name="timeline-nocards-demo" />
+
+### Hollow Circles
+
+<ComponentPreview name="timeline-hollow-demo" />
+
+## Notes
+
+- Vertical timelines automatically adjust padding to center the first and last cards.
+- All components support standard HTML attributes and className overrides.
