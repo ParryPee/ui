@@ -14,6 +14,7 @@ import {
 } from "@/registry/8starlabs-ui/ui/popover";
 import { Icons } from "@/components/icons";
 import { useTheme } from "next-themes";
+import { PAGES_NEW } from "@/lib/docs";
 
 export function MobileNav({
   tree,
@@ -89,6 +90,12 @@ export function MobileNav({
                     onOpenChange={setOpen}
                   >
                     {item.label}
+                    {PAGES_NEW.includes(item.href) && (
+                      <span
+                        className="flex size-2 rounded-full bg-blue-500"
+                        title="New"
+                      />
+                    )}
                   </MobileExternalLink>
                 ) : (
                   <MobileLink
@@ -97,6 +104,12 @@ export function MobileNav({
                     onOpenChange={setOpen}
                   >
                     {item.label}
+                    {PAGES_NEW.includes(item.href) && (
+                      <span
+                        className="flex size-2 rounded-full bg-blue-500"
+                        title="New"
+                      />
+                    )}
                   </MobileLink>
                 )
               )}
@@ -120,6 +133,12 @@ export function MobileNav({
                               onOpenChange={setOpen}
                             >
                               {item.name}
+                              {PAGES_NEW.includes(item.url) && (
+                                <span
+                                  className="flex size-2 rounded-full bg-blue-500"
+                                  title="New"
+                                />
+                              )}
                             </MobileLink>
                           );
                         }
@@ -156,7 +175,7 @@ function MobileLink({
         router.push(href.toString());
         onOpenChange?.(false);
       }}
-      className={cn("text-2xl font-medium", className)}
+      className={cn("text-2xl font-medium flex gap-2 items-center", className)}
       {...props}
     >
       {children}
@@ -182,7 +201,7 @@ function MobileExternalLink({
       target="_blank"
       rel="noopener noreferrer"
       onClick={() => onOpenChange?.(false)}
-      className={cn("text-2xl font-medium", className)}
+      className={cn("text-2xl font-medium flex gap-2 items-center", className)}
       {...props}
     >
       {children}
