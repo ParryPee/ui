@@ -1,5 +1,6 @@
 // AUTO-GENERATED FILE. DO NOT EDIT MANUALLY.
 import flip_clock_component from "@/registry/8starlabs-ui/blocks/flip-clock";
+import heatmap_component from "@/registry/8starlabs-ui/blocks/heatmap";
 import partition_bar_component from "@/registry/8starlabs-ui/blocks/partition-bar";
 import scroll_fade_component from "@/registry/8starlabs-ui/blocks/scroll-fade";
 import status_indicator_component from "@/registry/8starlabs-ui/blocks/status-indicator";
@@ -11,6 +12,7 @@ import flip_clock_demo_component from "@/registry/8starlabs-ui/examples/flip-clo
 import flip_clock_showdays_demo_component from "@/registry/8starlabs-ui/examples/flip-clock-showdays-demo";
 import flip_clock_size_demo_component from "@/registry/8starlabs-ui/examples/flip-clock-size-demo";
 import flip_clock_variants_demo_component from "@/registry/8starlabs-ui/examples/flip-clock-variants-demo";
+import heatmap_demo_component from "@/registry/8starlabs-ui/examples/heatmap-demo";
 import partition_bar_alignment_demo_component from "@/registry/8starlabs-ui/examples/partition-bar-alignment-demo";
 import partition_bar_custom_colours_demo_component from "@/registry/8starlabs-ui/examples/partition-bar-custom-colours-demo";
 import partition_bar_demo_component from "@/registry/8starlabs-ui/examples/partition-bar-demo";
@@ -42,6 +44,16 @@ export const Index: Record<string, any> = {
         target: ""
       }],
       component: flip_clock_component
+    },
+    "heatmap": {
+      name: "heatmap",
+      type: "registry:block",
+      files: [{
+        path: "registry/8starlabs-ui/blocks/heatmap.tsx",
+        type: "registry:block",
+        target: ""
+      }],
+      component: heatmap_component
     },
     "partition-bar": {
       name: "partition-bar",
@@ -152,6 +164,16 @@ export const Index: Record<string, any> = {
         target: ""
       }],
       component: flip_clock_variants_demo_component
+    },
+    "heatmap-demo": {
+      name: "heatmap-demo",
+      type: "registry:example",
+      files: [{
+        path: "registry/8starlabs-ui/examples/heatmap-demo.tsx",
+        type: "registry:example",
+        target: ""
+      }],
+      component: heatmap_demo_component
     },
     "partition-bar-alignment-demo": {
       name: "partition-bar-alignment-demo",

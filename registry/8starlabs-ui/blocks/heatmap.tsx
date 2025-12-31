@@ -221,7 +221,7 @@ export default function Heatmap(props: HeatmapProps) {
     endDate,
     cellSize = 20,
     daysOfTheWeek = "MWF",
-    gap = 2,
+    gap = 4,
     displayStyle = "squares",
     valueDisplayFunction,
     dateDisplayFunction,

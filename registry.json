@@ -4,6 +4,30 @@
   "homepage": "https://ui.8starlabs.com",
   "items": [
     {
+      "name": "heatmap",
+      "type": "registry:ui",
+      "title": "Heatmap",
+      "description": "A heatmap component",
+      "files": [
+        {
+          "path": "registry/8starlabs-ui/blocks/heatmap.tsx",
+          "type": "registry:ui"
+        }
+      ]
+    },
+    {
+      "name": "heatmap-demo",
+      "type": "registry:example",
+      "title": "Heatmap",
+      "description": "A heatmap demo component",
+      "files": [
+        {
+          "path": "registry/8starlabs-ui/examples/heatmap-demo.tsx",
+          "type": "registry:example"
+        }
+      ]
+    },
+    {
       "name": "partition-bar",
       "type": "registry:ui",
       "title": "Partition Bar",
