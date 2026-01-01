@@ -54,7 +54,7 @@ function getAllDays(start: string, end: string): string[] {
   const endDate = new Date(end + "T00:00:00");
 
   while (curr <= endDate) {
-    days.push(curr.toISOString().slice(0, 10));
+    days.push(formatLocalDate(curr));
     curr.setDate(curr.getDate() + 1);
   }
 
@@ -149,41 +149,40 @@ const defaultIntensityColours = [
 
 const daysOfTheWeek = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
 
-interface DaysOfTheWeekIndicatorProps extends HTMLAttributes<HTMLDivElement> {
+interface DaysOfTheWeekIndicatorProps {
   daysOfTheWeekOption: "all" | "MWF" | "none" | "single letter";
-  cellSize: number;
-  gap: number;
+  fontSize: number;
 }
 
-function DaysOfTheWeekIndicator({
+function daysOfTheWeekIndicator({
   daysOfTheWeekOption,
-  cellSize,
-  gap,
-  style
+  fontSize
 }: DaysOfTheWeekIndicatorProps) {
   if (daysOfTheWeekOption === "none") return null;
-  const indicators = daysOfTheWeek.map((day, i) => {
-    if (daysOfTheWeekOption === "MWF" && ![1, 3, 5].includes(i)) {
-      return <div key={i} style={{ height: cellSize }} />;
-    }
-    return (
+
+  return daysOfTheWeek.map((day, i) =>
+    daysOfTheWeekOption === "MWF" && ![1, 3, 5].includes(i) ? (
+      <div
+        key={i}
+        style={{
+          gridRow: i + 2,
+          gridColumn: 1
+        }}
+      />
+    ) : (
       <div
         key={i}
         className="flex items-center text-muted-foreground"
         style={{
-          height: cellSize,
-          fontSize: cellSize,
-          lineHeight: `${cellSize}px`
+          gridRow: i + 2,
+          gridColumn: 1,
+          justifyContent: "flex-end",
+          fontSize
         }}
       >
         {daysOfTheWeekOption === "single letter" ? day.charAt(0) : day}
       </div>
-    );
-  });
-  return (
-    <div className="flex flex-col" style={{ ...style, gap }}>
-      {indicators}
-    </div>
+    )
   );
 }
 
@@ -201,6 +200,7 @@ function ValueIndicator({
   value,
   maxValue,
   color,
+  style,
   ...htmlProps
 }: ValueIndicatorProps) {
   let finalSize = cellSize;
@@ -214,10 +214,10 @@ function ValueIndicator({
     return (
       <div
         className="flex items-center justify-center"
-        style={{ width: cellSize, height: cellSize }}
+        style={style}
         {...htmlProps}
       >
-        <div
+        <span
           className="transition-colors rounded-full"
           style={{
             width: finalSize,
@@ -233,10 +233,9 @@ function ValueIndicator({
     <div
       className="transition-colors rounded-md"
       style={{
-        width: cellSize,
-        height: cellSize,
         borderRadius: 4,
-        backgroundColor: color
+        backgroundColor: color,
+        ...style
       }}
       {...htmlProps}
     />
@@ -263,10 +262,7 @@ export default function Heatmap(props: HeatmapProps) {
     data.map(({ date, value }) => [date, value])
   );
 
-  const days = getAllDays(
-    startDate.toISOString().slice(0, 10),
-    endDate.toISOString().slice(0, 10)
-  );
+  const days = getAllDays(formatLocalDate(startDate), formatLocalDate(endDate));
   const paddedDays = padToWeekStart(days);
   const weeks = chunkByWeek(paddedDays);
 
@@ -277,6 +273,8 @@ export default function Heatmap(props: HeatmapProps) {
     const prevLabel = i > 0 ? getMonthLabel(weeks[i - 1]) : null;
     return label !== prevLabel ? label : null;
   });
+
+  const fontSize = Math.min(16, cellSize);
 
   const getCellColor = (value: number) => {
     if (colorMode === "interpolate") {
@@ -308,87 +306,85 @@ export default function Heatmap(props: HeatmapProps) {
   return (
     <div
       role="grid"
+      className="grid"
       aria-label="Activity Heatmap"
-      className={cn("flex", className)}
-      style={{ gap }}
+      style={{
+        gap,
+        gridTemplateColumns: `auto repeat(${weeks.length}, ${cellSize}px)`,
+        gridTemplateRows: `repeat(8, ${cellSize}px)`
+      }}
       {...(htmlProps as HTMLAttributes<HTMLDivElement>)}
     >
-      <DaysOfTheWeekIndicator
-        style={{ paddingTop: `${gap + 16}px` }}
-        daysOfTheWeekOption={daysOfTheWeek}
-        cellSize={cellSize}
-        gap={gap}
-      />
+      {daysOfTheWeekIndicator({ daysOfTheWeekOption: daysOfTheWeek, fontSize })}
 
-      <div className="flex flex-col" style={{ gap }}>
-        <div className="flex" style={{ gap }}>
-          {weeks.map((_, i) => (
-            <div
-              key={i}
-              style={{ width: cellSize }}
-              className="text-xs text-muted-foreground"
-            >
-              {monthLabels[i]}
-            </div>
-          ))}
+      {weeks.map((_, i) => (
+        <div
+          key={`header-${i}`}
+          style={{ gridColumn: i + 2, gridRow: 1, fontSize }}
+          className="text-muted-foreground"
+        >
+          {monthLabels[i]}
         </div>
+      ))}
 
-        <div className="flex" style={{ gap }}>
-          <TooltipProvider>
-            {weeks.map((week, i) => (
-              <div key={i} className="flex flex-col" style={{ gap }} role="row">
-                {week.map((day, j) => {
-                  if (!day) {
-                    return (
-                      <div
-                        key={j}
-                        style={{ width: cellSize, height: cellSize }}
-                      />
-                    );
-                  }
+      <TooltipProvider>
+        {weeks.map((week, weekIdx) =>
+          week.map((day, dayIdx) => {
+            if (!day) {
+              return (
+                <div
+                  key={dayIdx}
+                  style={{ gridColumn: weekIdx + 2, gridRow: dayIdx + 2 }}
+                />
+              );
+            }
 
-                  const thisDateValue = valueByDate.get(day) ?? 0;
-                  const safeValue = Math.max(0, thisDateValue);
-                  const thisColor = getCellColor(safeValue);
-                  const dateForDisplay = new Date(day + "T00:00:00");
+            const thisDateValue = valueByDate.get(day) ?? 0;
+            const safeValue = Math.max(0, thisDateValue);
+            const thisColor = getCellColor(safeValue);
+            const dateForDisplay = new Date(day + "T00:00:00");
 
-                  return (
-                    <Tooltip key={j}>
-                      <TooltipTrigger asChild>
-                        <ValueIndicator
-                          tabIndex={0}
-                          role="gridcell"
-                          aria-label={`${day}: ${safeValue} event${safeValue !== 1 ? "s" : ""}`}
-                          id={`heatmap-cell-${day}`}
-                          cellSize={cellSize}
-                          displayStyle={displayStyle}
-                          value={safeValue}
-                          maxValue={maxValue}
-                          color={thisColor}
-                        />
-                      </TooltipTrigger>
-                      <TooltipContent>
-                        <div className="text-xs">
-                          <div>
-                            {dateDisplayFunction
-                              ? dateDisplayFunction(dateForDisplay)
-                              : dateForDisplay.toDateString()}
-                          </div>
-                          <div className="text-muted-foreground">
-                            {valueDisplayFunction
-                              ? valueDisplayFunction(safeValue)
-                              : `${safeValue} event${safeValue !== 1 ? "s" : ""}`}
-                          </div>
-                        </div>
-                      </TooltipContent>
-                    </Tooltip>
-                  );
-                })}
-              </div>
-            ))}
-          </TooltipProvider>
-        </div>
-      </div>
+            return (
+              <Tooltip key={dayIdx}>
+                <TooltipTrigger asChild>
+                  <ValueIndicator
+                    style={{ gridColumn: weekIdx + 2, gridRow: dayIdx + 2 }}
+                    tabIndex={0}
+                    aria-label={`${day}: ${safeValue} event${safeValue !== 1 ? "s" : ""}`}
+                    id={`heatmap-cell-${day}`}
+                    cellSize={cellSize}
+                    displayStyle={displayStyle}
+                    value={safeValue}
+                    maxValue={maxValue}
+                    color={thisColor}
+                  />
+                </TooltipTrigger>
+                <TooltipContent>
+                  <div className="text-xs">
+                    <div>
+                      {dateDisplayFunction
+                        ? dateDisplayFunction(dateForDisplay)
+                        : dateForDisplay.toDateString()}
+                    </div>
+                    <div className="text-muted-foreground">
+                      {valueDisplayFunction
+                        ? valueDisplayFunction(safeValue)
+                        : `${safeValue} event${safeValue !== 1 ? "s" : ""}`}
+                    </div>
+                  </div>
+                </TooltipContent>
+              </Tooltip>
+            );
+          })
+        )}
+      </TooltipProvider>
     </div>
   );
+}
+
+function formatLocalDate(date: Date) {
+  const y = date.getFullYear();
+  const m = String(date.getMonth() + 1).padStart(2, "0");
+  const d = String(date.getDate()).padStart(2, "0");
+  return `${y}-${m}-${d}`;
 }
