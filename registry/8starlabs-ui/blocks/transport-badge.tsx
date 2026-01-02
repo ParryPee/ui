@@ -26,7 +26,7 @@ const SYSTEMS = {
     },
     CC: {
       name: "Circle Line",
-      short: "CC",
+      short: "CE",
       long: "CCL",
       bg: "#f99d26",
       fg: "#000"
