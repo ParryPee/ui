@@ -322,7 +322,7 @@ export default function Heatmap(props: HeatmapProps) {
         return props.minColor ?? "var(--heatmap-zero)";
       }
 
-      // value > 0
+      // 0 < value <= maxValue
       // interpolate between minColor and maxColor
       return interpolateRgb(
         value,

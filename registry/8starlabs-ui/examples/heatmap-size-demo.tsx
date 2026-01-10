@@ -38,9 +38,9 @@ const data: HeatmapData = [
 
 export default function HeatmapSizeDemo() {
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+    <div className="space-y-8">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Small (cellSize: 12, gap: 2)
         </p>
         <Heatmap
@@ -53,8 +53,8 @@ export default function HeatmapSizeDemo() {
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Medium (cellSize: 20, gap: 4) - Default
         </p>
         <Heatmap
@@ -67,8 +67,8 @@ export default function HeatmapSizeDemo() {
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Large (cellSize: 28, gap: 6)
         </p>
         <Heatmap

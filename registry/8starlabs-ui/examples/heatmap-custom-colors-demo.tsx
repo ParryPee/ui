@@ -57,9 +57,11 @@ const redToGreenScale = [
 
 export default function HeatmapCustomColorsDemo() {
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">Purple Color Scale</p>
+    <div className="space-y-8">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
+          Purple Color Scale
+        </p>
         <Heatmap
           data={data}
           startDate={new Date("2025-12-01")}
@@ -69,8 +71,8 @@ export default function HeatmapCustomColorsDemo() {
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Red to Green Color Scale
         </p>
         <Heatmap

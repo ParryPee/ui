@@ -38,9 +38,9 @@ const data: HeatmapData = [
 
 export default function HeatmapInterpolateDemo() {
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+    <div className="space-y-8">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Linear Interpolation
         </p>
         <Heatmap
@@ -49,13 +49,11 @@ export default function HeatmapInterpolateDemo() {
           endDate={new Date("2025-12-31")}
           colorMode="interpolate"
           interpolation="linear"
-          minColor="#f0fdf4"
-          maxColor="#166534"
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Square Root Interpolation
         </p>
         <Heatmap
@@ -64,13 +62,11 @@ export default function HeatmapInterpolateDemo() {
           endDate={new Date("2025-12-31")}
           colorMode="interpolate"
           interpolation="sqrt"
-          minColor="#fef2f2"
-          maxColor="#991b1b"
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
           Logarithmic Interpolation
         </p>
         <Heatmap
@@ -79,8 +75,6 @@ export default function HeatmapInterpolateDemo() {
           endDate={new Date("2025-12-31")}
           colorMode="interpolate"
           interpolation="log"
-          minColor="#eff6ff"
-          maxColor="#1e3a8a"
         />
       </div>
     </div>

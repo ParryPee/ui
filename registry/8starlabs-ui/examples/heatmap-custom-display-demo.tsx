@@ -53,8 +53,8 @@ export default function HeatmapCustomDisplayDemo() {
         </span>
       )}
       valueDisplayFunction={(value) => (
-        <span className="text-primary">
-          {value > 0 ? `${value} commits` : "No activity"}
+        <span className="text-yellow-500">
+          {value > 0 ? `Activity level: ${value}` : "No activity"}
         </span>
       )}
     />

@@ -38,25 +38,29 @@ const data: HeatmapData = [
 
 export default function HeatmapDisplayStyleDemo() {
   return (
-    <div className="flex flex-col gap-8">
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">Squares (Default)</p>
+    <div className="space-y-8">
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
+          Squares (Default)
+        </p>
         <Heatmap
           data={data}
           startDate={new Date("2025-12-01")}
           endDate={new Date("2025-12-31")}
-          colorMode="discrete"
+          colorMode="interpolate"
           displayStyle="squares"
         />
       </div>
 
-      <div>
-        <p className="text-sm text-muted-foreground mb-2">Bubbles</p>
+      <div className="flex flex-col items-center">
+        <p className="font-semibold text-sm text-muted-foreground mb-2">
+          Bubbles
+        </p>
         <Heatmap
           data={data}
           startDate={new Date("2025-12-01")}
           endDate={new Date("2025-12-31")}
-          colorMode="discrete"
+          colorMode="interpolate"
           displayStyle="bubbles"
         />
       </div>

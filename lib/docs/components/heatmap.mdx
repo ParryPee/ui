@@ -20,11 +20,39 @@ description: A heatmap component to visualize data density over time.
 npx shadcn@latest add https://ui.8starlabs.com/r/heatmap
 ```
 
+Then add the following lines to your global CSS file (e.g., `globals.css`):
+
+```css showLineNumbers
+:root {
+  --heatmap-zero: rgb(221, 221, 221);
+  /* other variables */
+}
+.dark {
+  --heatmap-zero: rgb(51, 51, 51);
+  /* other variables */
+}
+/* other pre-existing styles */
+```
+
 </TabsContent>
 
 <TabsContent value="manual">
 
 <ComponentSource name="heatmap" title="components/ui/heatmap.tsx" />
+
+Then add the following lines to your global CSS file (e.g., `globals.css`):
+
+```css showLineNumbers
+:root {
+  --heatmap-zero: rgb(221, 221, 221);
+  /* other variables */
+}
+.dark {
+  --heatmap-zero: rgb(51, 51, 51);
+  /* other variables */
+}
+/* other pre-existing styles */
+```
 
 </TabsContent>
 
@@ -61,24 +89,24 @@ export function MyHeatmap() {
 
 ### Heatmap
 
-| Prop                   | Type                                                         | Default              | Description                                                                                          |
-| ---------------------- | ------------------------------------------------------------ | -------------------- | ---------------------------------------------------------------------------------------------------- |
-| `data`                 | `HeatmapData`                                                | Required             | Array of objects with `date` (YYYY-MM-DD) and `value` (number) to display in the heatmap.            |
-| `startDate`            | `Date`                                                       | Required             | The start date for the heatmap range.                                                                |
-| `endDate`              | `Date`                                                       | Required             | The end date for the heatmap range.                                                                  |
-| `cellSize`             | `number`                                                     | `20`                 | Size of each cell in pixels.                                                                         |
-| `gap`                  | `number`                                                     | `4`                  | Gap between cells in pixels.                                                                         |
-| `daysOfTheWeek`        | `"all" \| "MWF" \| "none" \| "single letter"`                | `"MWF"`              | How to display day of week labels. "MWF" shows Mon/Wed/Fri, "single letter" shows first letter only. |
-| `displayStyle`         | `"squares" \| "bubbles"`                                     | `"squares"`          | Visual style of the cells. "bubbles" scales cell size based on value.                                |
-| `colorMode`            | `"discrete" \| "interpolate"`                                | Required             | Color mode for the heatmap. "discrete" uses a fixed color scale, "interpolate" blends colors.        |
-| `colorScale`           | `string[]`                                                   | Green palette        | (discrete mode) Array of color values to use. Only applies when `colorMode="discrete"`.              |
-| `customColorMap`       | `(value: number, max: number, colorCount: number) => number` | Linear mapping       | (discrete mode) Custom function to map values to color indices.                                      |
-| `maxColor`             | `string`                                                     | `"#00ff00"`          | (interpolate mode) Color for maximum values.                                                         |
-| `minColor`             | `string`                                                     | `"#212735"`          | (interpolate mode) Color for zero/minimum values.                                                    |
-| `interpolation`        | `"linear" \| "sqrt" \| "log"`                                | `"linear"`           | (interpolate mode) Interpolation method for color scaling.                                           |
-| `dateDisplayFunction`  | `(date: Date) => ReactNode`                                  | `Date.toDateString`  | Custom function to format the date in tooltips.                                                      |
-| `valueDisplayFunction` | `(value: number) => ReactNode`                               | "`{value}` event(s)" | Custom function to format the value in tooltips.                                                     |
-| `className`            | `string`                                                     | -                    | Additional CSS classes for the container.                                                            |
+| Prop                   | Type                                                         | Default                                                                                                                                                                                                                      | Description                                                                                          |
+| ---------------------- | ------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |
+| `data`                 | `HeatmapData`                                                | Required                                                                                                                                                                                                                     | Array of objects with `date` (YYYY-MM-DD) and `value` (number) to display in the heatmap.            |
+| `startDate`            | `Date`                                                       | Required                                                                                                                                                                                                                     | The start date for the heatmap range.                                                                |
+| `endDate`              | `Date`                                                       | Required                                                                                                                                                                                                                     | The end date for the heatmap range.                                                                  |
+| `cellSize`             | `number`                                                     | `20`                                                                                                                                                                                                                         | Size of each cell in pixels.                                                                         |
+| `gap`                  | `number`                                                     | `4`                                                                                                                                                                                                                          | Gap between cells in pixels.                                                                         |
+| `daysOfTheWeek`        | `"all" \| "MWF" \| "none" \| "single letter"`                | `"MWF"`                                                                                                                                                                                                                      | How to display day of week labels. "MWF" shows Mon/Wed/Fri, "single letter" shows first letter only. |
+| `displayStyle`         | `"squares" \| "bubbles"`                                     | `"squares"`                                                                                                                                                                                                                  | Visual style of the cells. "bubbles" scales cell size based on value.                                |
+| `colorMode`            | `"discrete" \| "interpolate"`                                | Required                                                                                                                                                                                                                     | Color mode for the heatmap. "discrete" uses a fixed color scale, "interpolate" blends colors.        |
+| `colorScale`           | `string[]`                                                   | Green palette: <span style={{color: "#f0fdf4"}}>▮</span><span style={{color: "#bbf7d0"}}>▮</span><span style={{color: "#86efac"}}>▮</span><span style={{color: "#22c55e"}}>▮</span><span style={{color: "#166534"}}>▮</span> | (discrete mode) Array of color values to use. Only applies when `colorMode="discrete"`.              |
+| `customColorMap`       | `(value: number, max: number, colorCount: number) => number` | Linear mapping                                                                                                                                                                                                               | (discrete mode) Custom function to map values to color indices.                                      |
+| `maxColor`             | `string`                                                     | <span style={{color: "#116329"}}>`"#116329"`</span>                                                                                                                                                                          | (interpolate mode) Color for maximum values.                                                         |
+| `minColor`             | `string`                                                     | <span style={{color: "#aceebb"}}>`"#aceebb"`</span>                                                                                                                                                                          | (interpolate mode) Color for the minimum nonzero value.                                              |
+| `interpolation`        | `"linear" \| "sqrt" \| "log"`                                | `"linear"`                                                                                                                                                                                                                   | (interpolate mode) Interpolation method for color scaling.                                           |
+| `dateDisplayFunction`  | `(date: Date) => ReactNode`                                  | `Date.toDateString`                                                                                                                                                                                                          | Custom function to format the date in tooltips.                                                      |
+| `valueDisplayFunction` | `(value: number) => ReactNode`                               | "`{value}` event(s)"                                                                                                                                                                                                         | Custom function to format the value in tooltips.                                                     |
+| `className`            | `string`                                                     | -                                                                                                                                                                                                                            | Additional CSS classes for the container.                                                            |
 
 ### Types
 
@@ -100,6 +128,12 @@ type HeatmapData = HeatmapValue[];
 ### Color Interpolation
 
 The heatmap supports different color interpolation modes to visualize data density.
+
+- <strong>Linear</strong>: Colors change uniformly with the value.
+- <strong>Square Root</strong>: Colors change more rapidly for lower values,
+  useful for skewed data.
+- <strong>Logarithmic</strong>: Colors change rapidly for very low values and
+  slowly for high values, ideal for wide-ranging data.
 
 <ComponentPreview name="heatmap-interpolate-demo" />
 
